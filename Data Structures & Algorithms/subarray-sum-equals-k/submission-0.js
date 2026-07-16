@@ -1,0 +1,27 @@
+class Solution {
+    /**
+     * @param {number[]} nums
+     * @param {number} k
+     * @return {number}
+     */
+    subarraySum(nums, k) {
+        let map = new Map();
+        map.set(0, 1);
+        let sum = 0;
+        let count = 0;
+        for(let i of nums){
+            sum+=i;
+            if(map.has(sum-k)){
+                count+=map.get(sum-k);
+            }
+            if(map.has(sum)) {
+                map.set(sum, map.get(sum) + 1);
+            }
+            else map.set(sum, 1);
+        }
+
+        console.log(map)
+
+        return count
+    }
+}
